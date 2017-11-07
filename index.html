@@ -39,9 +39,7 @@
 					Additionally, it will identify the number of speakers along with the zones where single or multiple speakers are active.
 					The first step before doing any audio processing is extracting features from the audio data.
 					Best feature that that describes the human perception of sensitivity with respect to
-				         frequency of identifying different speakers are mel-frequency cepstral coefficients.Followed by 
-					calculation of Delta coefficients, Delta-Delta(accelaration) coefficients, Bag of words Which are then
-					fed into a clustering algorithm followed by speech and speaker segmentation.
+				         frequency of identifying different speakers are mel-frequency cepstral coefficents.
 					<!-- Stop edit here -->
 
 				</div>
@@ -53,10 +51,11 @@
 
 					<!-- Start edit here  -->
 					The technique of speaker segmentation relies on the following steps :-<br />
-                                        1) Feature Extraction<br />
-                                        2) Noise and Music removal<br />
-                                        3) Speaker segementation using distance metric<br />
+                                        1) removing silence from signal <br />
+                                        2) MFCC feature extraction<br />
+                                        3) Delta,delta-delta and bag of words features from MFCC <br />
                                         4) Speaker Clustering using gaussian mixture models<br />
+					5) Speaker and Speech sequence segmentation
 					<!-- Stop edit here -->
 
 				</div>
