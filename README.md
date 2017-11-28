@@ -1,2 +1,2 @@
-# dsp320
+# Digital SIGNAL PROCESSING
 speech segmentation
