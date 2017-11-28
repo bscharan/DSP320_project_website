@@ -5,11 +5,11 @@
 			p{display: inline-block;}
 			img{display: block;}
 			.container{width: 90%;position absolute;margin: auto;}
-			.title{position: relative;width: 90%;margin: auto;text-align: center;font-weight: bold;font-size: 18px;padding: 1%;}
+			.title{position: relative;width: 90%;margin: auto;text-align: center;font-weight: bold;font-size: 24px;padding: 1%;}
 			.section{position: relative;width: 90%;margin: auto;padding: 2%;}
-			.subsection{position: relative; width: 98%;text-align: justify;padding: 10px;}
-			.heading{position: relative; width: 98%;text-align: left;font-size: 14px;font-weight: bold;}
-			.text{width: 95%;font-size: 12px;text-align: justify;padding: 10px 0px 10px 0px;}
+			.subsection{position: relative; width: 98%;text-align: justify;padding: 15px;}
+			.heading{position: relative; width: 98%;text-align: left;font-size: 20px;font-weight: bold;}
+			.text{width: 95%;font-size: 14px;text-align: justify;padding: 10px 0px 10px 0px;}
 			.authors{position: relative;width: 80%;margin: auto;padding: 2%;font-style: italic;text-align: center;font-size: 12px;}
 			.image{width: 95%;font-size: 12px;text-align: left;}
 		</style>
@@ -35,12 +35,18 @@
 				<div class="text">
 
 					<!-- Start edit here  -->
-					This project aims at segmenting speech sequences based on speaker transitions.
+					This project aims at an unsupervised method of speaker segmention and clustering of audio data using MFCC(Mel Frequency Cepstral Coefficients) and features extracted from the same.
+					
+					here the characteristics of speaker or speech and number of speakers is unknown
+					speech sequences based on speaker transitions.
 					Additionally, it will identify the number of speakers along with the zones where single or multiple speakers are active.
+					
+					
+					
 					The first step before doing any audio processing is extracting features from the audio data.
 					Best feature that that describes the human perception of sensitivity with respect to
-				         frequency of identifying different speakers are mel-frequency cepstral coefficents.
-					Followed by calculation of Delta coefficients, Delta-Delta(accelaration) coefficients, Bag of words Which are then fed into a clustering algorithm followed by speech and speaker segmentation.
+				    frequency of identifying different speakers are mel-frequency cepstral coefficents.
+					Followed by calculation of Delta coefficients, Delta-Delta(accelaration) coefficients, Which are then fed into a clustering algorithm followed by speech and speaker segmentation.
 					<!-- Stop edit here -->
 
 				</div>
@@ -51,8 +57,13 @@
 				<div class="text">
 
 					<!-- Start edit here  -->
-					Nowadays, a rapid increase in the volume of recorded speech is manifested. Indeed, television and audio broadcasting, meeting recordings, and voice mails have become a commonplace [1]. However, the huge volume size hinders content organization, navigation, browsing, and retrieval. Speaker segmentation and speaker clustering are tools that alleviate the management of huge audio archives.
-Speaker segmentation aims at splitting an audio stream into acoustically homogeneous segments
+					Nowadays, a rapid increase in the volume of recorded speech is manifested.
+					Indeed, television and audio broadcasting, meeting recordings, and voice mails have become a commonplace.
+					However, the huge volume size hinders content organization, navigation, browsing, and retrieval. Speaker segmentation and speaker clustering are tools that alleviate the management of huge audio archives.
+					Speaker segmentation aims at splitting an audio stream into acoustically homogeneous segments
+					
+					With the rapid advancement in technology,
+					It is very important for organisations and companies to organise speech data into different classes.
 					
 					
 					<!-- Stop edit here -->
@@ -64,7 +75,9 @@ Speaker segmentation aims at splitting an audio stream into acoustically homogen
 					<div class="text">
 
 						<!-- Start edit here  -->
-						Main challenge in the process of speaker recognition is separting audio based on speaker.It can enhance the readability of an automatic
+					The Main Aim of this project is to segment and cluster an audio sample based on speaker when number of speakers are not known before hand.
+					
+					Main challenge in the process of speaker recognition is separting audio based on speaker.It can enhance the readability of an automatic
 					speech transcription by structuring the audio 
 					stream into speaker turns and, when used together with speaker recognition systems, by providing the speaker's true identity.Other challenges are
 					due to multiple speakers present at the time instant
@@ -78,7 +91,7 @@ Speaker segmentation aims at splitting an audio stream into acoustically homogen
 					<div class="image">
 
 						<!-- Start edit here  -->
-                                                <img src="Pictures/Screenshot (81).png" alt="This text displays when the image is umavailable" width="400px" height=""/>
+                                                <img src="Pictures/Screenshot (81).png" alt="This text displays when the image is unavailable" width="400px" height=""/>
 						<!-- Stop edit here -->
 
 					</div>
@@ -98,7 +111,12 @@ Speaker segmentation aims at splitting an audio stream into acoustically homogen
 					<div class="text">
 
 						<!-- Start edit here  -->
-						Describe your approach briefly here.
+			The technique of speaker segmentation relies on the following steps :-<br />
+					1) Removing noise from input audio sample (using Amplitude threshold,ZCR) <br />
+                    2) MFCC feature extraction<br />
+                    3) Delta,delta-delta and other features from MFCC <br />
+                    4) Speech segmentation and Clustering using k-means clustering and spherical k-means clustering<br />
+										
 						<!-- Stop edit here -->
 
 					</div>
@@ -121,12 +139,41 @@ Speaker segmentation aims at splitting an audio stream into acoustically homogen
 
 					<!-- Start edit here  -->
 					
-					The technique of speaker segmentation relies on the following steps :-<br />
-                                        1) removing silence from signal <br />
+					The technique of speaker segmentation relies on the following steps :-<br /><br />
+                                        1) Removal of noise for input sound sample<br />
+											Most of the noise is present in the 'silence' part of the speech signal. So, the task is to identify the silent part 
+											of the speech signal and to reduce the noise present there.The silence detection from the audio signal is carried 
+											out by using the amplitude thresholding.In this method, the audio 
+											sample is broken down into many small frames each of 20ms.In each frame maximum of the amplitude is found. If the 
+											maximum amplitude of a particular frame is less than the threshold, the data of the frame is replaced by zeros.In this way, noise present in silence is removed.<br />
+											<br />
                                         2) MFCC feature extraction<br />
+											After the removal of noise from the audio signal, features are extracted from it.Extraction of MFC coefficents from the audio signal is carried out as follows<br />
+											The speech signal is first preemphasised using a first order FIR filter The preemphasised speech signal is subjected to the short-time Fourier transform analysis with frame durations 
+											of 25, frame shifts of 10 and analysis hamming window function. This is followed by magnitude 
+											spectrum computation followed by filterbank design with 16 triangular 
+											filters uniformly spaced on the mel scale between lower and upper 
+											frequency limits as 300 Hz and 3000 Hz. The filterbank is applied to 
+											the magnitude spectrum values to produce filterbank energies (FBEs) 
+											.Log-compressed FBEs are then decorrelated using the 
+											discrete cosine transform to produce cepstral coefficients. <br /><br />
                                         3) Delta,delta-delta and other features from MFCC <br />
-                                        4) Speaker Clustering using k-means clustering<br />
-					5) Speaker based Speech sequence segmentation
+											Delta and delta-delta are calculated from the MFCCs using the formulae:
+											
+											<br /><br /><br />
+											
+											Silences found in the first step are employed here, The 12 dimensional MFCCs found between two adjacent silences are taken average and stored in an other matrix 
+											corresponding to the speech signal.<br /><br />
+                                        4) Speech segmentation and Clustering using k-means clustering and spherical k-means clustering<br />
+											The mean values of the MFCCs between the adjacent silences are clustered using K-means clustering and spherical K-means Clustering. The audio date corresponding to the 
+											mean values of the MFCCs are joined together and hence the speech audio of different speakers are obtained seperately.<br /><br />
+					
+					The technique of speaker segmentation relies on the following steps :-<br />
+					1) Removing noise from input audio sample (using Amplitude threshold,ZCR) <br />
+                    2) MFCC feature extraction<br />
+                    3) Delta,delta-delta and other features from MFCC <br />
+                    4) Speech segmentation and Clustering using k-means clustering and spherical k-means clustering<br />
+										
 					<!-- Stop edit here -->
 
 				</div>
