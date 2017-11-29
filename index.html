@@ -157,6 +157,29 @@
 											the magnitude spectrum values to produce filterbank energies (FBEs) 
 											.Log-compressed FBEs are then decorrelated using the 
 											discrete cosine transform to produce cepstral coefficients. <br /><br />
+					
+					i)PRE EMPHASIS:In speech processing, the original signal usually has too much lower frequency energy, and processing the signal to emphasize higher frequency 
+                                        energy is necessary. To perform pre-emphasis, we choose some value α between .9 and 1. Then each value in
+                                        the signal is re-evaluated using this formula: y[n] = x[n] - α*x[n-1]. This is apparently a first order high pass filter
+                                        Another good property of preemphasis is that it helps to deal with DC offset which is often present in 
+                                        recordings and thus it can improve energy-based voice activity detection.<br/>
+					2)WINDOWING:Speech is non-stationary signal where properties change quite rapidly over time. This is fully natural
+                                        and nice thing but makes the use of DFT or autocorrelation as a such impossible. For most phonemes
+                                        the properties of the speech remain invariant for a short period of time (5-100
+                                        ms). Thus for a short window of time, traditional signal processing methods can be applied relatively successfully
+                                        The speech signal is divided into short frames of 25ms 
+                                        Finally, it is usually beneficial to taper the samples in each window so that discontinuities at the window
+                                        edges are attenuated. This is done by Hamming window
+                                        hamming = @(N)(0.54-0.46*cos(2*pi*[0:N-1].'/(N-1))<br/>
+					3)FFT MAGNITUDE SPECTRUM:magnitude spectrum of discrete fourier transform of the above signal is calculated<br/>
+					4) FILTER BANKS GENERATION:The human ear resolves frequencies non-linearly across the audio spectrum and empirical evidence
+                                        suggests that designing a front-end to operate in a similar non-linear manner improves recognition
+                                        performance.So, filter banks are generated using triangular filters with uniformly spaced filters on mel scale(logarithmic on linear scale).
+                                        The filterbank is applied to the magnitude spectrum values to produce filterbank energies (FBEs)</br>
+				        5)CEPSTRAL FEATURES:Most often, however, cepstral parameters are required and these are indicated by setting the target
+                                        kind to MFCC standing for Mel-Frequency Cepstral Coefficients (MFCCs). These are calculated from
+                                        the log filterbank amplitudes {mj} using the Discrete Cosine Transform.<br/>
+					
                                         3) Delta,delta-delta and other features from MFCC <br />
 											Delta and delta-delta are calculated from the MFCCs using the formulae:
 											
