@@ -242,7 +242,7 @@ decrement n and follow same proceduce and the above relation is followed,this re
 					first we find number of number of speakers using the program we mentioned above(kmean_un) , if n is > 2 , we cluster it into 2 parts , and repeat same procedure with child clusters until there is no more child with more than 2 speakers</p>
 					<p><b>Pseudo Code</b><br/>
 						step 1: sample to kmean_un  % to find number of speakers</br>
-				        step 2: if n>2; sample into 2 clusters.</br>
+				        step 2: if n>=2; sample into 2 clusters.</br>
 					step 3: each clustered sample to Kmean_un</br>
 	                                step 4: repeat step 2 for each child clusters.
 					output will be be when no child cluster cannot be divided further
