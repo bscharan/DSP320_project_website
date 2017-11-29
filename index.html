@@ -236,7 +236,7 @@ decrement n and follow same proceduce and the above relation is followed,this re
 					The mean values of the MFCCs between the adjacent silences are calculated clustered using K-means clustering and spherical K-means Clustering. The audio date corresponding to the 
 											mean values of the MFCCs are joined together and hence the speech audio of different speakers are obtained seperately.<br /><br />
 					
-					<b> 5) Modified K-Means Clustering for more than 3 speakers</b>
+				<b > 5) Modified K-Means Clustering for more than 3 speakers</b></br>
 						<p>since K means is a classifier based on distance metric,it does not work expected as number of speakers increases. To address this proplem we have modified the traditional uses of kmeans .
 							we have found k-means is more accurate while clustering 2 speakers.
 					first we find number of number of speakers using the program we mentioned above(kmean_un) , if n is > 2 , we cluster it into 2 parts , and repeat same procedure with child clusters until there is no more child with more than 2 speakers</p>
@@ -289,7 +289,7 @@ This ensures that there is no noise in the signal and also lets us know about th
 It is because of K-means and spherical K-means clusters based on the distance metric. The margins of the cluster are exactly at the halfway between the two centroids. But that should not happen in this case because the clusters formed by the feature vectors are similar to Gaussian distributed.
  To find the number of speakers in the audio signal and cluster the data accordingly, we did the following process. 
 First of all, we cluster the data into two clusters (which may contain more clusters in it). Next, we send each cluster to an algorithm which decides the number of clusters present with that parent cluster. Then we cluster accordingly.
-<p>
+</p>
 						<!-- Stop edit here -->
 
 					</div>
