@@ -201,7 +201,11 @@
 											Here, we assume that there is at least 5ms scilence between each speaker, 
 											The mean values of the MFCCs between the adjacent silences are calculated clustered using K-means clustering and spherical K-means Clustering. The audio date corresponding to the 
 											mean values of the MFCCs are joined together and hence the speech audio of different speakers are obtained seperately.<br /><br />
-				
+                                        Features used for k-means and spherical k-means are:-<br/>
+                                          1)MFCC features-13<br/>
+                                                2)Delta MFCC features-13<br/>
+                                          3)Delta-delta MFCC features-13<br/>
+                                        the accuracy was higher for MFCC rather than all three combined.<br/>				
 										
 					<!-- Stop edit here -->
 
