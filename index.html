@@ -357,7 +357,7 @@ for extraction of MFCC.</p></br>
 
 					</div>
 						<audio controls>
-                                               <source src="Pictures/tvsam.wav" type="audio/wav">
+                                               <source src="Pictures/merge.wav" type="audio/wav">
                                                </audio>
 
 						
@@ -374,16 +374,28 @@ for extraction of MFCC.</p></br>
 						<H5>speaker 1 clustered audio using Kmeans</H5><br/>
 						
 						<audio controls>
-                                               <source src="Pictures/tark.wav" alt="speaker 1 clustered audio using K-means" type="audio/wav">
+                                               <source src="Pictures/kcluster1.wav" alt="speaker 1 clustered audio using K-means" type="audio/wav">
                                                </audio><br/>
 					       
 						<H5>speaker 2 clustered audio using Kmeans</H5><br/>	
 
 					       <audio controls>
-                                               <source src="Pictures/venk.wav" alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
+                                               <source src="Pictures/kcluster2.wav" alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
                                                </audio><br/>
 							
+						<H5>speaker 3 clustered audio using Kmeans</H5><br/>
+						
+						<audio controls>
+                                               <source src="Pictures/kcluster3.wav" alt="speaker 3 clustered audio using K-means" type="audio/wav">
+                                               </audio><br/>
+					       
+						<H5>speaker 4 clustered audio using Kmeans</H5><br/>	
+
+					       <audio controls>
+                                               <source src="Pictures/kcluster4.wav" alt="speaker 4 clustered audio using Kmeans" type="audio/wav">
+                                               </audio><br/>
 							
+							</br>
 							
 							
 						<H3><b>Clustered audio according to speaker using Spherical-Kmeans</b></H3>
@@ -397,16 +409,75 @@ for extraction of MFCC.</p></br>
 						<H5>speaker 1 clustered audio using spherical- Kmeans</H5><br/>	
 
 						<audio controls>
-                                               <source src="Pictures/tars.wav" alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
+                                               <source src="Pictures/spkcluster1.wav" alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
                                                </audio><br/>
 						<H5>speaker 2 clustered audio using spherical- Kmeans</H><br/>
 
 					        <audio controls>
-                                               <source src="Pictures/vens.wav"alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
+                                               <source src="Pictures/spkcluster2.wav"alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
+                                               </audio>	<br/>
+							
+						<H5>speaker 3 clustered audio using spherical- Kmeans</H5><br/>	
+
+						<audio controls>
+                                               <source src="Pictures/spkcluster3.wav" alt="speaker 3 clustered audio using spherical- Kmeans" type="audio/wav">
+                                               </audio><br/>
+						<H5>speaker 4 clustered audio using spherical- Kmeans</H><br/>
+
+					        <audio controls>
+                                               <source src="Pictures/spkcluster4.wav"alt="speaker 4 clustered audio using spherical-Kmeans" type="audio/wav">
                                                </audio>	<br/>
 							
 							<br/><br/><br/>
 <!--         /////// modified k-means\\\\\\\\\\\\\\\
+						<H3><b>Data Set 3 Merge of Dataset1 and Dataset2(4 speakers) with Modified K-means (best n model)</b><H3> 
+					<div class="image">
+
+						<!-- Start edit here  -->
+                                                <img src="Pictures/datavt.jpg" alt="This text displays when the image is unavailable" width="75%" height=""/>
+						<!-- Stop edit here -->
+
+					</div>
+						<audio controls>
+                                               <source src="Pictures/merge.wav" type="audio/wav">
+                                               </audio>
+
+						
+						
+						<H3><b>Clustered audio according to speaker using K-means (modified)</b></H3>	
+				         <div class="image">
+
+						<!-- Start edit here  -->
+                                                <img src="Pictures/kmvt.jpg" alt="This text displays when the image is unavailable" width="75%" height=""/>
+						<!-- Stop edit here -->
+
+					</div>
+							
+						<H5>speaker 1 clustered audio using Kmeans (modified)</H5><br/>
+						
+						<audio controls>
+                                               <source src="Pictures/onlyspk1.wav" alt="speaker 1 clustered audio using K-means" type="audio/wav">
+                                               </audio><br/>
+					       
+						<H5>speaker 2 clustered audio using Kmeans (modified)</H5><br/>	
+
+					       <audio controls>
+                                               <source src="Pictures/onlyspk2.wav" alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
+                                               </audio><br/>
+							
+							
+						<H5>speaker 3 clustered audio using  K-means (modified)</H5><br/>	
+
+						<audio controls>
+                                               <source src="Pictures/onlyspk3.wav" alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
+                                               </audio><br/>
+						<H5>speaker 4 clustered audio using Kmeans (modified)</H><br/>
+
+					        <audio controls>
+                                               <source src="Pictures/onlyspk4.wav"alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
+                                               </audio>	<br/>
+							
+							<br/><br/><br/>
 <!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->	
 							<!-- Stop edit here -->							
 							
@@ -420,8 +491,13 @@ for extraction of MFCC.</p></br>
 
 						<!-- Start edit here  -->
 						<p>The audio signal can be analysed in two ways, analysing in the time domain and analysing in the frequency domain.Frequency domain analysis becomes very handy when it comes to differentiating the speakers in an audio signal.
-for our project, We started with Fourier transform of the speech signal to check if we can find any similarities in the spectrum of the audio clips of same speaker and differences in the spectrum of the different speakers.Unfortunately we are unable to see any similarities in the spectrum of the same speaker, moreover, the spectrum of the different speakers appear to be the same sometimes. We found out that there are high-frequency components in the spectrum of the speech signal. This shows that there is a noise in the speech signal. To measure the noise in the speech signal at a particular instant, we made use of ZCR(Zero Crossing Rate).from that, we found that the most of the noise is present in the silent part of the audio signal i.e. the part of the audio signal where no one is speaking.To remove the noise in the silent part, we employed amplitude thresholding to remove the parts of the signal whose amplitude is less than 5% of maximum amplitude and replaced it zeros. 
-This ensures that there is no noise in the signal and also lets us know about the position of the silences in the signal.The features we need to extract should approximate the human auditory system's response. By going through some research papers and some literary reviews, we found that MFCCs approximate the human auditory system's response. We extracted the MFC coefficients from the audio signal as shown in the "proposed approach" above.
+for our project, We started with Fourier transform of the speech signal to check if we can find any similarities in the spectrum of the audio clips of same speaker and differences in the spectrum of the different speakers.Unfortunately we are unable to see any similarities in the spectrum of the same speaker,
+							moreover, the spectrum of the different speakers appear to be the same sometimes. 
+							We found out that there are high-frequency components in the spectrum of the speech signal. This shows that there is a noise in the speech signal. To measure the noise in the speech signal at a particular instant, we made use of ZCR(Zero Crossing Rate).from that,
+							we found that the most of the noise is present in the silent part of the audio signal 
+							i.e. the part of the audio signal where no one is speaking.To remove the noise in the silent part, we employed amplitude thresholding to remove the parts of the signal whose amplitude is less than 5% of maximum amplitude and replaced it zeros. 
+This ensures that there is no noise in the signal and also lets us know about the position of the silences in the signal.The features we need to extract should approximate the human auditory system's response. By going through some research papers and some literary reviews, 
+							we found that MFCCs approximate the human auditory system's response. We extracted the MFC coefficients from the audio signal as shown in the "proposed approach" above.
  The final part is to cluster the feature vectors obtained. we used K-means as well as Spherical K-means clustering algorithms. It works well for two clusters, but when there are more than two clusters, K-means doesn't show results as expected. 
 It is because of K-means and spherical K-means clusters based on the distance metric. The margins of the cluster are exactly at the halfway between the two centroids. But that should not happen in this case because the clusters formed by the feature vectors are similar to Gaussian distributed.
  To find the number of speakers in the audio signal and cluster the data accordingly, we did the following process. 
