@@ -39,19 +39,18 @@
 				<div class="text">
 
 					<!-- Start edit here  -->
-					This project aims at an unsupervised method of speaker segmention and clustering of audio data using MFCC(Mel Frequency Cepstral Coefficients) and features extracted from the same.
-					
+					<p>This project aims at an unsupervised method of speaker segmention and clustering of audio data using MFCC(Mel Frequency Cepstral Coefficients) and features extraction from thesame.
 					here the characteristics of speaker or speech and number of speakers is unknown
-					speech sequences based on speaker transitions.
-					Additionally, it will identify the number of speakers along with the zones where single or multiple speakers are active.
+						speech sequences based on speaker transitions.</p>
 					
 					
 					
-					The first step before doing any audio processing is extracting features from the audio data.
+					<p>The first step before doing any audio processing is extracting features from the audio data.
 					Best feature that that describes the human perception of sensitivity with respect to
 				    frequency of identifying different speakers are mel-frequency cepstral coefficents.
-					Followed by calculation of Delta coefficients, Delta-Delta(accelaration) coefficients, Which are then fed into a clustering algorithm followed by speech and speaker segmentation.
-					<!-- Stop edit here -->
+					Followed by calculation of Delta coefficients, Delta-Delta(accelaration) coefficients, Which are then fed into a clustering algorithm (K-means,GMM) followed by speech and speaker segmentation.
+					In this project we have implemented K-means,Spherical K-means clustering along with a modifed version of K-means(based on Divide and conquer algorithm)
+						<!-- Stop edit here -->
 
 				</div>
 			</div>
@@ -61,13 +60,12 @@
 				<div class="text">
 
 					<!-- Start edit here  -->
-					Nowadays, a rapid increase in the volume of recorded speech is manifested.
-					Indeed, television and audio broadcasting, meeting recordings, and voice mails have become a commonplace.
+					Nowadays, With the rapid advancement in technology and increase in the volume of recorded speech is manifested.
+					Indeed, television and audio broadcasting, meeting recordings, and voice mails have become a commonplace.It is very important for organisations and companies to organise speech data into different classes.
 					However, the huge volume size hinders content organization, navigation, browsing, and retrieval. Speaker segmentation and speaker clustering are tools that alleviate the management of huge audio archives.
-					Speaker segmentation aims at splitting an audio stream into acoustically homogeneous segments
+					Speaker segmentation aims at splitting an audio stream into acoustically homogeneous segments based on the speaker.
+				
 					
-					With the rapid advancement in technology,
-					It is very important for organisations and companies to organise speech data into different classes.
 					
 					
 					<!-- Stop edit here -->
@@ -165,6 +163,16 @@ for extraction of MFCC.</p></br>
 											maximum amplitude of a particular frame is less than the threshold (0.05), the data of the frame is replaced by zeros.In this way,silence is detected and noise present is removed.<br />
 											<br />
                                         2) MFCC feature extraction<br />
+					
+					
+				<div class="image">
+
+						<!-- Start edit here  -->
+                                                <img src="Pictures/mfccimage.png" alt="This text displays when the image is unavailable" width="75%" height=""/>
+						<!-- Stop edit here -->
+
+				</div>
+					
 											After the removal of noise from the audio signal, features like MFCC, delta-MFCC and Delta-Delta MFCC are extracted from it. Extraction of MFC coefficents from the audio signal is carried out as follows<br />
 											The speech signal is first preemphasised using a first order FIR filter The preemphasised speech signal is subjected to the short-time Fourier transform analysis with frame durations 
 											of 25, frame shifts of 10 and analysis hamming window function. This is followed by magnitude 
