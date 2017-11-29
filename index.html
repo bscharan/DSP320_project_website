@@ -155,14 +155,14 @@ for extraction of MFCC.</p></br>
 					<!-- Start edit here  -->
 					
 					The technique of speaker segmentation relies on the following steps :-<br /><br />
-                                        1) Removal of noise for input sound sample<br />
-											Most of the noise is present in the 'silence' part of the speech signal. So, the task is to identify the silent part 
-											of the speech signal and to reduce the noise present there.The silence detection from the audio signal is carried 
-											out using amplitude thresholding.In this method, the audio 
-											sample is broken down into many small frames each of 20ms.In each of these frames, maximum amplitude is found. If the 
-											maximum amplitude of a particular frame is less than the threshold (0.05), the data of the frame is replaced by zeros.In this way,silence is detected and noise present is removed.<br />
+					<b>1) Removal of noise for input sound sample</b><br />
+					Most of the noise is present in the 'silence' part of the speech signal. So, the task is to identify the silent part 
+					of the speech signal and to reduce the noise present there.The silence detection from the audio signal is carried 
+					out using amplitude thresholding.In this method, the audio 
+					sample is broken down into many small frames each of 20ms.In each of these frames, maximum amplitude is found. If the 
+					maximum amplitude of a particular frame is less than the threshold (0.05), the data of the frame is replaced by zeros.In this way,silence is detected and noise present is removed.<br />
 											<br />
-                                        2) MFCC feature extraction<br />
+					<b> 2) MFCC feature extraction<br /></b>
 					
 					
 				<div class="image">
@@ -173,23 +173,23 @@ for extraction of MFCC.</p></br>
 
 				</div>
 					
-											After the removal of noise from the audio signal, features like MFCC, delta-MFCC and Delta-Delta MFCC are extracted from it. Extraction of MFC coefficents from the audio signal is carried out as follows<br />
-											The speech signal is first preemphasised using a first order FIR filter The preemphasised speech signal is subjected to the short-time Fourier transform analysis with frame durations 
-											of 25, frame shifts of 10 and analysis hamming window function. This is followed by magnitude 
-											spectrum computation followed by filterbank design with 16 triangular 
-											filters uniformly spaced on the mel scale between lower and upper 
-											frequency limits as 300 Hz and 3000 Hz. The filterbank is applied to 
-											the magnitude spectrum values to produce filterbank energies (FBEs) 
-											.Log-compressed FBEs are then decorrelated using the 
-											discrete cosine transform to produce cepstral coefficients. <br /><br />
-					1)PRE EMPHASIS:In speech processing, the original signal usually has too much lower frequency energy, and processing the signal to emphasize higher frequency 
+					After the removal of noise from the audio signal, features like MFCC, delta-MFCC and Delta-Delta MFCC are extracted from it. Extraction of MFC coefficents from the audio signal is carried out as follows<br />
+					The speech signal is first preemphasised using a first order FIR filter The preemphasised speech signal is subjected to the short-time Fourier transform analysis with frame durations 
+					of 25, frame shifts of 10 and analysis hamming window function. This is followed by magnitude 
+					spectrum computation followed by filterbank design with 16 triangular 
+					filters uniformly spaced on the mel scale between lower and upper 
+					frequency limits as 300 Hz and 3000 Hz. The filterbank is applied to 
+					the magnitude spectrum values to produce filterbank energies (FBEs) 
+					.Log-compressed FBEs are then decorrelated using the 
+					discrete cosine transform to produce cepstral coefficients. <br /><br />
+					<b>i) PRE EMPHASIS</b>:In speech processing, the original signal usually has too much lower frequency energy, and processing the signal to emphasize higher frequency 
                                         energy is necessary. To perform pre-emphasis, we choose some value a between .9 and 1. Then each value in
                                         the signal is re-evaluated using this formula: y[n] = x[n] - a*x[n-1]. This is apparently a first order high pass filter
                                         Another good property of preemphasis is that it helps to deal with DC offset which is often present in 
                                         recordings and thus it can improve energy-based voice activity detection.<br/>
                                                                  <br/>
 					
-                                        2)WINDOWING:Speech is non-stationary signal where properties change quite rapidly over time. This is fully natural
+					<b>2)WINDOWING</b>:Speech is non-stationary signal where properties change quite rapidly over time. This is fully natural
                                         and nice thing but makes the use of DFT or autocorrelation as a such impossible. For most phonemes
                                         the properties of the speech remain invariant for a short period of time (5-100
                                         ms). Thus for a short window of time, traditional signal processing methods can be applied relatively successfully
@@ -199,28 +199,28 @@ for extraction of MFCC.</p></br>
 					hamming = @(N)(0.54-0.46*cos(2*pi*[0:N-1].'/(N-1))<br/>
 					<br/>
 					
-                                        3)FFT MAGNITUDE SPECTRUM:magnitude spectrum of discrete fourier transform of the above signal is calculated<br/>
+					<b>iii) FFT MAGNITUDE SPECTRUM</b>:magnitude spectrum of discrete fourier transform of the above signal is calculated<br/>
 					<br/>
-					4) FILTER BANKS GENERATION:The human ear resolves frequencies non-linearly across the audio spectrum and empirical evidence
+					<b> iv) FILTER BANKS GENERATION:</b>The human ear resolves frequencies non-linearly across the audio spectrum and empirical evidence
                                         suggests that designing a front-end to operate in a similar non-linear manner improves recognition
                                         performance.So, filter banks are generated using triangular filters with uniformly spaced filters on mel scale(logarithmic on linear scale).
                                         The filterbank is applied to the magnitude spectrum values to produce filterbank energies (FBEs)<br/>
 					<br/>
-					5)CEPSTRAL FEATURES:Most often, however, cepstral parameters are required and these are indicated by setting the target
+					<b> v)CEPSTRAL FEATURES:</b>Most often, however, cepstral parameters are required and these are indicated by setting the target
                                         kind to MFCC standing for Mel-Frequency Cepstral Coefficients (MFCCs). These are calculated from
                                        the log filterbank amplitudes {mj} using the Discrete Cosine Transform.<br/>
 					<br/>
 					
 					
 					
-                                        3) Delta,delta-delta and other features from MFCC <br />
+					<b>3) Delta,delta-delta and other features from MFCC </b><br />
 											Delta and delta-delta are calculated from the MFCCs using the formulae:
 											
 											<br /><br /><br />
 											
 											Silences found in the first step are employed here, The 12 dimensional MFCCs found between two adjacent silences are taken average and stored in an other matrix 
 											corresponding to the speech signal.<br /><br />
-                                        4) Speech segmentation and Clustering using k-means clustering and spherical k-means clustering<br />
+                                      <b>  4) Speech segmentation and Clustering using k-means clustering and spherical k-means clustering</b><br />
 											Here, we assume that there is at least 5ms scilence between each speaker, 
 											The mean values of the MFCCs between the adjacent silences are calculated clustered using K-means clustering and spherical K-means Clustering. The audio date corresponding to the 
 											mean values of the MFCCs are joined together and hence the speech audio of different speakers are obtained seperately.<br /><br />
