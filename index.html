@@ -430,7 +430,7 @@ for extraction of MFCC.</p></br>
 							
 							<br/><br/><br/>
 <!--         /////// modified k-means\\\\\\\\\\\\\\\
-						<H3><b>Data Set 3 Merge of Dataset1 and Dataset2(4 speakers) with Modified K-means (best n model)</b><H3> 
+						<H3><b>Data Set 3 Merge of Dataset1 and Dataset2(4 speakers) with Modified K-means (Divide and conquer)</b><H3> 
 					<div class="image">
 
 						<!-- Start edit here  -->
@@ -516,7 +516,22 @@ First of all, we cluster the data into two clusters (which may contain more clus
 					<div class="text">
 
 						<!-- Start edit here  -->
-						Write something here.
+						
+						
+						
+						
+						
+						<h6 >Results</h6>
+						<p>The results obtained for the data sets are as follows:
+For the dataset 1, the algorithm clusters perfectly and two different audio clips are obtained corresponding to each speaker(male and female)
+For the dataset 2, the algorithm clusters perfectly and two different audio clips are obtained corresponding to each speaker(male and male)
+When the dataset 1 and data set 2 are merged and sent as input to the algorithm, the results are not up to the mark, by just using K-means algorithm.
+When the merged dataset is sent as input to the Divide and conquer algorithm for Kmeans, with this modified kmeans algorithm, 
+the clustering is better than the one which uses only K-means or spherical kmeans.</p>
+						<h6>Conclusions</h6><p>
+						The results obtained are satisfactory. When there are two speakers, the algorithm clusters perfectly but When there are more than two speakers, the algorithm is a bit less efficient in clustering. K-means is the best fit when there are two speakers.
+The results can be better obtained when we use clustering algorithms that cluster the Gaussian distributed data. GMM or HMM can be employed for that purpose.
+						</p>
 						<!-- Stop edit here -->
 
 					</div>
