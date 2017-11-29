@@ -201,11 +201,7 @@
 											Here, we assume that there is at least 5ms scilence between each speaker, 
 											The mean values of the MFCCs between the adjacent silences are calculated clustered using K-means clustering and spherical K-means Clustering. The audio date corresponding to the 
 											mean values of the MFCCs are joined together and hence the speech audio of different speakers are obtained seperately.<br /><br />
-                                        Features used for k-means and spherical k-means are:-<br/>
-                                          1)MFCC features-13<br/>
-                                                2)Delta MFCC features-13<br/>
-                                          3)Delta-delta MFCC features-13<br/>
-                                        the accuracy was higher for MFCC rather than all three combined.<br/>				
+				
 										
 					<!-- Stop edit here -->
 
@@ -220,7 +216,7 @@
 
 						<!-- Start edit here  -->
 						
-						<H3><b>Data Set 1 <b><H3> 
+						<H3><b>Data Set 1 :Male-Female(2 speakers) <b><H3> 
 					<div class="image">
 
 						<!-- Start edit here  -->
@@ -277,11 +273,66 @@
                                                <source src="Pictures/spk2.wav" width="50%" alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
                                                </audio>	<br/>
 						
-							<!-- Stop edit here -->	
-					<H3><b>Dataset 2<b/><H3/>
-							<!-- Stop edit here -->	
+<!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->	
+
+						<H2><b>Data Set 2 Male-Male(2 speakers) <b><H2> 
+					<div class="image">
+
+						<!-- Start edit here  -->
+                                                <img src="Pictures/datavt.png" alt="This text displays when the image is unavailable" width="400px" height=""/>
+						<!-- Stop edit here -->
+
+					</div>
+						<audio controls>
+                                               <source src="Pictures/tvsam.wav" type="audio/wav">
+                                               </audio>
+
+						
+						
+						<H3><b>Clustered audio according to speaker using Kmeans</b></H3>	
+				         <div class="image">
+
+						<!-- Start edit here  -->
+                                                <img src="Pictures/kmvt.png" alt="This text displays when the image is unavailable" width="400px" height=""/>
+						<!-- Stop edit here -->
+
+					</div>
+							
+						<H6>speaker 1 clustered audio using Kmeans</H6><br/>
+						
+						<audio controls>
+                                               <source src="Pictures/tark.wav" alt="speaker 1 clustered audio using Kmeans" type="audio/wav">
+                                               </audio><br/>
+					       
+						<H6>speaker 2 clustered audio using Kmeans</H6><br/>	
+
+					       <audio controls>
+                                               <source src="Pictures/venk.wav" alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
+                                               </audio><br/>
 							
 							
+							
+							
+						<H3><b>Clustered audio according to speaker using Spherical-Kmeans</b></H3>
+				         <div class="image">
+
+						<!-- Start edit here  -->
+                                                <img src="Pictures/spkmvt.png" alt="This text displays when the image is unavailable" width="400px" height=""/>
+						<!-- Stop edit here -->
+
+					</div>
+						<H6>speaker 1 clustered audio using spherical- Kmeans</H6><br/>	
+
+						<audio controls>
+                                               <source src="Pictures/tars.wav" alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
+                                               </audio><br/>
+						<H6>speaker 2 clustered audio using spherical- Kmeans</H6><br/>
+
+					        <audio controls>
+                                               <source src="Pictures/vens.wav"alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
+                                               </audio>	<br/>
+<!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->	
+							<!-- Stop edit here -->							
 							
 							<!-- Stop edit here -->
 
