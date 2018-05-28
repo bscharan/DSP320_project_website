@@ -1,2 +1,3 @@
-# Digital SIGNAL PROCESSING
-speech segmentation
+# Digital Signal Processing
+
+Autoomatic speech speech segmentation using MFCC features and K-means clustering
