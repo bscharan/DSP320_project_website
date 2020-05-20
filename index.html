@@ -1,605 +1,796 @@
-
 <html>
-	<head>
-		<style type="text/css">
-			
-                        @import url('https://fonts.googleapis.com/css?family=Indie+Flower|Merriweather');
-			body{font-family:'Merriweather', serif;}
-			p{display: inline-block;}
-			img{display: block;}
-			.container{width: 90%;position absolute;margin: auto;}
-			.title{position: relative;width: 90%;margin: auto;text-align: center;font-weight: bold;font-size: 24px;padding: 1%;}
-			.section{position: relative;width: 90%;margin: auto;padding: 2%;}
-			.subsection{position: relative; width: 98%;padding: 15px;}
-			.heading{position: relative; width: 98%;text-align: left;font-size: 20px;font-weight: bold;}
-			.text{width: 95%;font-size: 14px;text-align: justify;padding: 10px 15px 10px 10px;}
-			.text2{width: 95%;font-size: 14px;padding: 10px 15px 10px 10px;}
-			.authors{position: relative;width: 80%;margin: auto;padding: 2%;font-style: italic;text-align: center;font-size: 12px;}
-			.image{margin: auto;font-size: 12px;text-align: left;}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="title">Automatic Speech Sequence Segmentation </div>
 
-			<div class="authors">
+<head>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Indie+Flower|Merriweather');
 
-				<!-- Start edit here  -->
-				<p>Bhukya Venkatesh, Roll No.: 150102012, Branch: ECE</p>; &nbsp; &nbsp;
-				<p>Bodda Sai Charan, Roll No.: 150102013, Branch: ECE</p>; &nbsp; &nbsp;<br/>
-				<p>Chintapalli Tarun, Roll No.: 150102014, Branch: ECE</p>; &nbsp; &nbsp;
-				<p>Gaddabathini Rahul, Roll No.: 150102019, Branch: ECE</p>; &nbsp; &nbsp;
-				<!-- Stop edit here -->
+        body {
+            font-family: 'Merriweather', serif;
+        }
 
-			</div>
+        p {
+            display: inline-block;
+        }
+
+        img {
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            position absolute;
+            margin: auto;
+        }
+
+        .title {
+            position: relative;
+            width: 90%;
+            margin: auto;
+            text-align: center;
+            font-weight: bold;
+            font-size: 24px;
+            padding: 1%;
+        }
+
+        .section {
+            position: relative;
+            width: 90%;
+            margin: auto;
+            padding: 2%;
+        }
+
+        .subsection {
+            position: relative;
+            width: 98%;
+            padding: 15px;
+        }
+
+        .heading {
+            position: relative;
+            width: 98%;
+            text-align: left;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .text {
+            width: 95%;
+            font-size: 14px;
+            text-align: justify;
+            padding: 10px 15px 10px 10px;
+        }
+
+        .text2 {
+            width: 95%;
+            font-size: 14px;
+            padding: 10px 15px 10px 10px;
+        }
+
+        .authors {
+            position: relative;
+            width: 80%;
+            margin: auto;
+            padding: 2%;
+            font-style: italic;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .image {
+            margin: auto;
+            font-size: 12px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">Automatic Speech Sequence Segmentation </div>
+
+        <div class="authors">
+
+            <!-- Start edit here  -->
+            <p>Bhukya Venkatesh, Roll No.: 150102012, Branch: ECE</p>; &nbsp; &nbsp;
+            <p>Bodda Sai Charan, Roll No.: 150102013, Branch: ECE</p>; &nbsp; &nbsp;<br />
+            <p>Chintapalli Tarun, Roll No.: 150102014, Branch: ECE</p>; &nbsp; &nbsp;
+            <p>Gaddabathini Rahul, Roll No.: 150102019, Branch: ECE</p>; &nbsp; &nbsp;
+            <!-- Stop edit here -->
+
+        </div>
 
 
-			<div class="section">
-				<div class="heading">Abstract</div>
-				<div class="text">
+        <div class="section">
+            <div class="heading">Abstract</div>
+            <div class="text">
 
-					<!-- Start edit here  -->
-					<p>This project aims at an unsupervised method of speaker segmention and clustering of audio data using MFCC(Mel Frequency Cepstral Coefficients) and features extraction from the same.
-					here the characteristics of speaker or speech and number of speakers is unknown
-						speech sequences based on speaker transitions.</p>
-					
-					
-					
-					<p>The first step before doing any audio processing is extracting features from the audio data.
-					Best feature that that describes the human perception of sensitivity with respect to
-				    frequency of identifying different speakers are mel-frequency cepstral coefficents.
-					Followed by calculation of Delta coefficients, Delta-Delta(accelaration) coefficients, Which are then fed into a clustering algorithm (K-means,GMM) followed by speech and speaker segmentation.
-					In this project we have implemented K-means,Spherical K-means clustering along with a modifed version of K-means(based on Divide and conquer algorithm)
-						<!-- Stop edit here -->
+                <!-- Start edit here  -->
+                <p>This project aims at an unsupervised method of speaker segmention and clustering of audio data using
+                    MFCC(Mel Frequency Cepstral Coefficients) and features extraction from the same.
+                    here the characteristics of speaker or speech and number of speakers is unknown
+                    speech sequences based on speaker transitions.</p>
 
-				</div>
-			</div>
 
-			<div class="section">
-				<div class="heading">1. Introduction</div>
-				<div class="text">
 
-					<!-- Start edit here  -->
-					Nowadays, With the rapid advancement in technology and increase in the volume of recorded speech is manifested.
-					Indeed, television and audio broadcasting, meeting recordings, and voice mails have become a commonplace.It is very important for organisations and companies to organise speech data into different classes.
-					However, the huge volume size hinders content organization, navigation, browsing, and retrieval. Speaker segmentation and speaker clustering are tools that alleviate the management of huge audio archives.
-					Speaker segmentation aims at splitting an audio stream into acoustically homogeneous segments based on the speaker.
-				
-					
-					
-					
-					<!-- Stop edit here -->
+                <p>The first step before doing any audio processing is extracting features from the audio data.
+                    Best feature that that describes the human perception of sensitivity with respect to
+                    frequency of identifying different speakers are mel-frequency cepstral coefficents.
+                    Followed by calculation of Delta coefficients, Delta-Delta(accelaration) coefficients, Which are
+                    then fed into a clustering algorithm (K-means,GMM) followed by speech and speaker segmentation.
+                    In this project we have implemented K-means,Spherical K-means clustering along with a modifed
+                    version of K-means(based on Divide and conquer algorithm)
+                    <!-- Stop edit here -->
 
-				</div>
+            </div>
+        </div>
 
-				<div class="subsection">
-					<div class="heading">1.1 Introduction to Problem</div>
-					<div class="text">
+        <div class="section">
+            <div class="heading">1. Introduction</div>
+            <div class="text">
 
-						<!-- Start edit here  -->
-					The Main Aim of this project is to segment and cluster an audio sample based on speaker when number of speakers are not known before hand.
-					
-					Main challenge in the process of speaker recognition is separting audio based on speaker.It can enhance the readability of an automatic
-					speech transcription by structuring the audio 
-					stream into speaker turns and, when used together with speaker recognition systems, by providing the speaker's true identity.Other challenges are
-					due to multiple speakers present at the time instant
-						<!-- Stop edit here -->
+                <!-- Start edit here  -->
+                Nowadays, With the rapid advancement in technology and increase in the volume of recorded speech is
+                manifested.
+                Indeed, television and audio broadcasting, meeting recordings, and voice mails have become a
+                commonplace.It is very important for organisations and companies to organise speech data into different
+                classes.
+                However, the huge volume size hinders content organization, navigation, browsing, and retrieval. Speaker
+                segmentation and speaker clustering are tools that alleviate the management of huge audio archives.
+                Speaker segmentation aims at splitting an audio stream into acoustically homogeneous segments based on
+                the speaker.
 
-					</div>
-				</div>
 
-				<div class="subsection">
-					<div class="heading">1.2 Figure</div>
-					<div class="image">
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/titlep.png" alt="This text displays when the image is unavailable" width="70%" align="center" height=""/>
-						<!-- Stop edit here -->
 
-					</div>
-				</div>
-				<div class="subsection">
-					<div class="heading">1.3 Literature Review</div>
-					<div class="text2">
+                <!-- Stop edit here -->
 
-						<!-- Start edit here  -->
-<a href="http://home.iitk.ac.in/~anurendk/ee698/report.pdf" target="_blank" style="text-align:left;">Unsupervised Speaker Diarization</a>
-<p style="text-align:justify;">It explore the conventional techniques which involves hierarchichical agglomerative clustering and later shift
-to Integer Linear Programming clustering which gives state of the art results for unsupervised speaker diarization.In the
-ILP clustering, the k-means problem is modified to obtain a set of clusters. </p></br>
+            </div>
 
-<a href="http://www.ijctee.org/NSPIRE2013/IJCTEE_0313_Special_Issue_27.pdf" target="-blank" style="text-align:left;">Vector Quantization Approach for Speaker Recognition</a>
-<p style="text-align:justify;">This paper mainly concentrates on using vector quantization approach for d for mapping vectors from a large vector
-space to a finite number of regions in that space. Each region is called a cluster and can be represented by its center called a
-codeword</p></br>
+            <div class="subsection">
+                <div class="heading">1.1 Introduction to Problem</div>
+                <div class="text">
 
-<a href="http://speech.ee.ntu.edu.tw/homework/DSP_HW2-1/htkbook.pdf" target="_blank" style="text-align:left;">The HTK Book</a>
-<p style="text-align:justify;">Young, S., Evermann, G., Gales, M., Hain, T., Kershaw, D. Liu, X., Moore, G., Odell, J., Ollason, D., Povey, D., Valtchev, V., Woodland, P., 2006.
-This book mainly emphasis on implementation of MFCC it discusses about the voice box tool kit used in the matlab
-for extraction of MFCC.</p></br>
-						<!-- Stop edit here -->
+                    <!-- Start edit here  -->
+                    The Main Aim of this project is to segment and cluster an audio sample based on speaker when number
+                    of speakers are not known before hand.
 
-					</div>
-				</div>
-				<div class="subsection">
-					<div class="heading">1.4 Proposed Approach</div>
-					<div class="text">
+                    Main challenge in the process of speaker recognition is separting audio based on speaker.It can
+                    enhance the readability of an automatic
+                    speech transcription by structuring the audio
+                    stream into speaker turns and, when used together with speaker recognition systems, by providing the
+                    speaker's true identity.Other challenges are
+                    due to multiple speakers present at the time instant
+                    <!-- Stop edit here -->
 
-						<!-- Start edit here  -->
-			The technique of speaker segmentation relies on the following steps :-<br />
-		    1) Removing noise from input audio sample (using Amplitude threshold,ZCR) <br />
+                </div>
+            </div>
+
+            <div class="subsection">
+                <div class="heading">1.2 Figure</div>
+                <div class="image">
+
+                    <!-- Start edit here  -->
+                    <img src="Pictures/titlep.png" alt="This text displays when the image is unavailable" width="70%"
+                        align="center" height="" />
+                    <!-- Stop edit here -->
+
+                </div>
+            </div>
+            <div class="subsection">
+                <div class="heading">1.3 Literature Review</div>
+                <div class="text2">
+
+                    <!-- Start edit here  -->
+                    <a href="http://home.iitk.ac.in/~anurendk/ee698/report.pdf" target="_blank"
+                        style="text-align:left;">Unsupervised Speaker Diarization</a>
+                    <p style="text-align:justify;">It explore the conventional techniques which involves hierarchichical
+                        agglomerative clustering and later shift
+                        to Integer Linear Programming clustering which gives state of the art results for unsupervised
+                        speaker diarization.In the
+                        ILP clustering, the k-means problem is modified to obtain a set of clusters. </p></br>
+
+                    <a href="http://www.ijctee.org/NSPIRE2013/IJCTEE_0313_Special_Issue_27.pdf" target="-blank"
+                        style="text-align:left;">Vector Quantization Approach for Speaker Recognition</a>
+                    <p style="text-align:justify;">This paper mainly concentrates on using vector quantization approach
+                        for d for mapping vectors from a large vector
+                        space to a finite number of regions in that space. Each region is called a cluster and can be
+                        represented by its center called a
+                        codeword</p></br>
+
+                    <a href="http://speech.ee.ntu.edu.tw/homework/DSP_HW2-1/htkbook.pdf" target="_blank"
+                        style="text-align:left;">The HTK Book</a>
+                    <p style="text-align:justify;">Young, S., Evermann, G., Gales, M., Hain, T., Kershaw, D. Liu, X.,
+                        Moore, G., Odell, J., Ollason, D., Povey, D., Valtchev, V., Woodland, P., 2006.
+                        This book mainly emphasis on implementation of MFCC it discusses about the voice box tool kit
+                        used in the matlab
+                        for extraction of MFCC.</p></br>
+                    <!-- Stop edit here -->
+
+                </div>
+            </div>
+            <div class="subsection">
+                <div class="heading">1.4 Proposed Approach</div>
+                <div class="text">
+
+                    <!-- Start edit here  -->
+                    The technique of speaker segmentation relies on the following steps :-<br />
+                    1) Removing noise from input audio sample (using Amplitude threshold,ZCR) <br />
                     2) MFCC feature extraction<br />
                     3) Delta,delta-delta and other features from MFCC <br />
-                    4) Speech segmentation and Clustering using k-means clustering and spherical k-means clustering<br />
-										
-						<!-- Stop edit here -->
+                    4) Speech segmentation and Clustering using k-means clustering and spherical k-means
+                    clustering<br />
 
-					</div>
-				</div>
-				<div class="subsection">
-					<div class="heading">1.5 Report Organization</div>
-					<div class="text">
+                    <!-- Stop edit here -->
 
-						<!-- Start edit here  -->
-				<a href="https://github.com/saicharan1729/Automatic-speech-sequence-segmentation/" target="_blank"><b>Link to Code(github)</b><a> 
-						<!-- Stop edit here -->
+                </div>
+            </div>
+            <div class="subsection">
+                <div class="heading">1.5 Report Organization</div>
+                <div class="text">
 
-					</div>
-				</div>
-			</div>
+                    <!-- Start edit here  -->
+                    <a href="https://github.com/saicharan1729/Automatic-speech-sequence-segmentation/"
+                        target="_blank"><b>Link to Code(github)</b><a>
+                            <!-- Stop edit here -->
 
-			<div class="section">
-				<div class="heading">2. Proposed Approach</div>
-				<div class="text">
+                </div>
+            </div>
+        </div>
 
-					<!-- Start edit here  -->
-					
-					The technique of speaker segmentation relies on the following steps :-<br /><br />
-					<b>1) Removal of noise for input sound sample</b><br />
-					Most of the noise is present in the 'silence' part of the speech signal. So, the task is to identify the silent part 
-					of the speech signal and to reduce the noise present there.The silence detection from the audio signal is carried 
-					out using amplitude thresholding.In this method, the audio 
-					sample is broken down into many small frames each of 20ms.In each of these frames, maximum amplitude is found. If the 
-					maximum amplitude of a particular frame is less than the threshold (0.05), the data of the frame is replaced by zeros.In this way,silence is detected and noise present is removed.<br />
-											<br />
-					<b> 2) MFCC feature extraction<br /></b>
-					
-					
-				<div class="image">
+        <div class="section">
+            <div class="heading">2. Proposed Approach</div>
+            <div class="text">
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/mfccimage.png" alt="This text displays when the image is unavailable" width="75%" height=""/>
-						<!-- Stop edit here -->
+                <!-- Start edit here  -->
 
-				</div>
-					
-					After the removal of noise from the audio signal, features like MFCC, delta-MFCC and Delta-Delta MFCC are extracted from it. Extraction of MFC coefficents from the audio signal is carried out as follows<br />
-					The speech signal is first preemphasised using a first order FIR filter The preemphasised speech signal is subjected to the short-time Fourier transform analysis with frame durations 
-					of 25, frame shifts of 10 and analysis hamming window function. This is followed by magnitude 
-					spectrum computation followed by filterbank design with 16 triangular 
-					filters uniformly spaced on the mel scale between lower and upper 
-					frequency limits as 300 Hz and 3000 Hz. The filterbank is applied to 
-					the magnitude spectrum values to produce filterbank energies (FBEs) 
-					.Log-compressed FBEs are then decorrelated using the 
-					discrete cosine transform to produce cepstral coefficients. <br /><br />
-					<b>i) PRE EMPHASIS</b>:In speech processing, the original signal usually has too much lower frequency energy, and processing the signal to emphasize higher frequency 
-                                        energy is necessary. To perform pre-emphasis, we choose some value a between .9 and 1. Then each value in
-                                        the signal is re-evaluated using this formula: y[n] = x[n] - a*x[n-1]. This is apparently a first order high pass filter
-                                        Another good property of preemphasis is that it helps to deal with DC offset which is often present in 
-                                        recordings and thus it can improve energy-based voice activity detection.<br/>
-                                                                 <br/>
-					
-					<b>2)WINDOWING</b>:Speech is non-stationary signal where properties change quite rapidly over time. This is fully natural
-                                        and nice thing but makes the use of DFT or autocorrelation as a such impossible. For most phonemes
-                                        the properties of the speech remain invariant for a short period of time (5-100
-                                        ms). Thus for a short window of time, traditional signal processing methods can be applied relatively successfully
-                                        The speech signal is divided into short frames of 25ms 
-                                        Finally, it is usually beneficial to taper the samples in each window so that discontinuities at the window
-                                        edges are attenuated. This is done by Hamming window<br/>
-					hamming = @(N)(0.54-0.46*cos(2*pi*[0:N-1].'/(N-1))<br/>
-					<br/>
-					
-					<b>iii) FFT MAGNITUDE SPECTRUM</b>:magnitude spectrum of discrete fourier transform of the above signal is calculated<br/>
-					<br/>
-					<b> iv) FILTER BANKS GENERATION:</b>The human ear resolves frequencies non-linearly across the audio spectrum and empirical evidence
-                                        suggests that designing a front-end to operate in a similar non-linear manner improves recognition
-                                        performance.So, filter banks are generated using triangular filters with uniformly spaced filters on mel scale(logarithmic on linear scale).
-                                        The filterbank is applied to the magnitude spectrum values to produce filterbank energies (FBEs)<br/>
-					<br/>
-					<b> v)CEPSTRAL FEATURES:</b>Most often, however, cepstral parameters are required and these are indicated by setting the target
-                                        kind to MFCC standing for Mel-Frequency Cepstral Coefficients (MFCCs). These are calculated from
-                                       the log filterbank amplitudes {mj} using the Discrete Cosine Transform.<br/>
-					<br/>
-					
-					
-					
-					<b>3) Delta,delta-delta and other features from MFCC </b><br />
-											Delta and delta-delta are calculated from the MFCCs using the formulae:
-					<div class="image">
+                The technique of speaker segmentation relies on the following steps :-<br /><br />
+                <b>1) Removal of noise for input sound sample</b><br />
+                Most of the noise is present in the 'silence' part of the speech signal. So, the task is to identify the
+                silent part
+                of the speech signal and to reduce the noise present there.The silence detection from the audio signal
+                is carried
+                out using amplitude thresholding.In this method, the audio
+                sample is broken down into many small frames each of 20ms.In each of these frames, maximum amplitude is
+                found. If the
+                maximum amplitude of a particular frame is less than the threshold (0.05), the data of the frame is
+                replaced by zeros.In this way,silence is detected and noise present is removed.<br />
+                <br />
+                <b> 2) MFCC feature extraction<br /></b>
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/Capture.PNG" alt="This text displays when the image is unavailable" width="75%" align="center" height=""/>
-						<!-- Stop edit here -->
 
-					</div>						
-					
-											<br /><br /><br />
-											
-											Silences found in the first step are employed here, The 12 dimensional MFCCs found between two adjacent silences are taken average and stored in an other matrix 
-											corresponding to the speech signal.<br /><br />
-                                      <b>  4) Speech segmentation and Clustering using k-means clustering and spherical k-means clustering (UNSUPERVISED)</b><br />
-											Here, we assume that there is at least 5ms scilence between each speaker, 
-					<br/>
-					since the number of speakers is not known before hand,we have implemented a program(kmean_un.m in /code/ github code link) that starts with a large number of clusters n .
-					let their centroids be A1,A2,A3......, if the distance between any three adjacent clusters centroid does not follow the relation ,</br>0.4 < (Distance (An ,An-1)/ (Distance (An ,An-1) + Distance (An-1 ,An-2)))<0.6 </br>
-decrement n and follow same proceduce and the above relation is followed,this results in almost eqvidistant clusters(shown better results and converging to actual number of speakers) <br/>
-					The mean values of the MFCCs between the adjacent silences are calculated clustered using K-means clustering and spherical K-means Clustering with numbers of clusters from above (Kmean_un). The audio date corresponding to the 
-											mean values of the MFCCs are joined together and hence the speech audio of different speakers are obtained seperately.<br /><br />
-					
-				<b > 5) Modified K-Means Clustering for more than 3 speakers</b></br>
-						<p>since K means is a classifier based on distance metric,it does not work expected as number of speakers increases. To address this proplem we have modified the traditional uses of kmeans .
-							we have found k-means is more accurate while clustering 2 speakers.
-					first we find number of number of speakers using the program we mentioned above(kmean_un) , if n is > 2 , we cluster it into 2 parts , and repeat same procedure with child clusters until there is no more child with more than 2 speakers</p>
-					<p><b>Pseudo Code</b><br/>
-						step 1: sample to kmean_un  % to find number of speakers</br>
-				        step 2: if n>=2; sample into 2 clusters.</br>
-					step 3: each clustered sample to Kmean_un</br>
-	                                step 4: repeat step 2 for each child clusters.
-					output will be be when no child cluster cannot be divided further
-				
-					</p>
-					
-						
-						
-						
-					<div class="image">
+                <div class="image">
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/optkmea2.png" alt="This text displays when the image is unavailable" width="75%" align="center" height=""/>
-						<!-- Stop edit here -->
+                    <!-- Start edit here  -->
+                    <img src="Pictures/mfccimage.png" alt="This text displays when the image is unavailable" width="75%"
+                        height="" />
+                    <!-- Stop edit here -->
 
-					</div>	
-						
-					
-										
-					<!-- Stop edit here -->
+                </div>
 
-				</div>
-			</div>
+                After the removal of noise from the audio signal, features like MFCC, delta-MFCC and Delta-Delta MFCC
+                are extracted from it. Extraction of MFC coefficents from the audio signal is carried out as
+                follows<br />
+                The speech signal is first preemphasised using a first order FIR filter The preemphasised speech signal
+                is subjected to the short-time Fourier transform analysis with frame durations
+                of 25, frame shifts of 10 and analysis hamming window function. This is followed by magnitude
+                spectrum computation followed by filterbank design with 16 triangular
+                filters uniformly spaced on the mel scale between lower and upper
+                frequency limits as 300 Hz and 3000 Hz. The filterbank is applied to
+                the magnitude spectrum values to produce filterbank energies (FBEs)
+                .Log-compressed FBEs are then decorrelated using the
+                discrete cosine transform to produce cepstral coefficients. <br /><br />
+                <b>i) PRE EMPHASIS</b>:In speech processing, the original signal usually has too much lower frequency
+                energy, and processing the signal to emphasize higher frequency
+                energy is necessary. To perform pre-emphasis, we choose some value a between .9 and 1. Then each value
+                in
+                the signal is re-evaluated using this formula: y[n] = x[n] - a*x[n-1]. This is apparently a first order
+                high pass filter
+                Another good property of preemphasis is that it helps to deal with DC offset which is often present in
+                recordings and thus it can improve energy-based voice activity detection.<br />
+                <br />
 
-			<div class="section">
-				<div class="heading">3. Experiments &amp; Results</div>
-				
-				
-				
-				<div class="subsection">
-					<div class="heading">3.1 Analysis</div>
-					<div class="text">
+                <b>2)WINDOWING</b>:Speech is non-stationary signal where properties change quite rapidly over time. This
+                is fully natural
+                and nice thing but makes the use of DFT or autocorrelation as a such impossible. For most phonemes
+                the properties of the speech remain invariant for a short period of time (5-100
+                ms). Thus for a short window of time, traditional signal processing methods can be applied relatively
+                successfully
+                The speech signal is divided into short frames of 25ms
+                Finally, it is usually beneficial to taper the samples in each window so that discontinuities at the
+                window
+                edges are attenuated. This is done by Hamming window<br />
+                hamming = @(N)(0.54-0.46*cos(2*pi*[0:N-1].'/(N-1))<br />
+                <br />
 
-						<!-- Start edit here  -->
-						<p>The audio signal can be analysed in two ways, analysing in the time domain and analysing in the frequency domain.Frequency domain analysis becomes very handy when it comes to differentiating the speakers in an audio signal.
-for our project, We started with Fourier transform of the speech signal to check if we can find any similarities in the spectrum of the audio clips of same speaker and differences in the spectrum of the different speakers.Unfortunately we are unable to see any similarities in the spectrum of the same speaker,
-							moreover, the spectrum of the different speakers appear to be the same sometimes. 
-							We found out that there are high-frequency components in the spectrum of the speech signal. This shows that there is a noise in the speech signal. To measure the noise in the speech signal at a particular instant, we made use of ZCR(Zero Crossing Rate).from that,
-							we found that the most of the noise is present in the silent part of the audio signal 
-							i.e. the part of the audio signal where no one is speaking.To remove the noise in the silent part, we employed amplitude thresholding to remove the parts of the signal whose amplitude is less than 5% of maximum amplitude and replaced it zeros. 
-This ensures that there is no noise in the signal and also lets us know about the position of the silences in the signal.The features we need to extract should approximate the human auditory system's response. By going through some research papers and some literary reviews, 
-							we found that MFCCs approximate the human auditory system's response. We extracted the MFC coefficients from the audio signal as shown in the "proposed approach" above.
- The final part is to cluster the feature vectors obtained. we used K-means as well as Spherical K-means clustering algorithms. It works well for two clusters, but when there are more than two clusters, K-means doesn't show results as expected. 
-It is because of K-means and spherical K-means clusters based on the distance metric. The margins of the cluster are exactly at the halfway between the two centroids. But that should not happen in this case because the clusters formed by the feature vectors are similar to Gaussian distributed.
- To find the number of speakers in the audio signal and cluster the data accordingly, we did the following process. 
-First of all, we cluster the data into two clusters (which may contain more clusters in it). Next, we send each cluster to an algorithm which decides the number of clusters present with that parent cluster. Then we cluster accordingly.
-</p>
-						<!-- Stop edit here -->
+                <b>iii) FFT MAGNITUDE SPECTRUM</b>:magnitude spectrum of discrete fourier transform of the above signal
+                is calculated<br />
+                <br />
+                <b> iv) FILTER BANKS GENERATION:</b>The human ear resolves frequencies non-linearly across the audio
+                spectrum and empirical evidence
+                suggests that designing a front-end to operate in a similar non-linear manner improves recognition
+                performance.So, filter banks are generated using triangular filters with uniformly spaced filters on mel
+                scale(logarithmic on linear scale).
+                The filterbank is applied to the magnitude spectrum values to produce filterbank energies (FBEs)<br />
+                <br />
+                <b> v)CEPSTRAL FEATURES:</b>Most often, however, cepstral parameters are required and these are
+                indicated by setting the target
+                kind to MFCC standing for Mel-Frequency Cepstral Coefficients (MFCCs). These are calculated from
+                the log filterbank amplitudes {mj} using the Discrete Cosine Transform.<br />
+                <br />
 
-					</div>
-				</div>
-			</div>
-				
-				
-				
-				<div class="subsection">
-					<div class="heading">3.2 Dataset Description and Observations</div>
-					<div class="text">
 
-						<!-- Start edit here  -->
-<!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->							
-						<H3><b>Data Set 1 :Male-Female(2 speakers) </b><H3> 
-					<div class="image">
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/Inputdata(1).png" alt="This text displays when the image is unavailable" width="75%" align="center" height=""/>
-						<!-- Stop edit here -->
+                <b>3) Delta,delta-delta and other features from MFCC </b><br />
+                Delta and delta-delta are calculated from the MFCCs using the formulae:
+                <div class="image">
 
-					</div>
-						<audio controls>
-                                               <source src="Pictures/123.wav" width="50%" type="audio/wav">
-                                               </audio>
+                    <!-- Start edit here  -->
+                    <img src="Pictures/Capture.PNG" alt="This text displays when the image is unavailable" width="75%"
+                        align="center" height="" />
+                    <!-- Stop edit here -->
 
-						
-						
-						<H3><b>Clustered audio according to speaker using Kmeans</b></H3>	
-				         <div class="image">
+                </div>
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/K-Means (1).png" alt="This text displays when the image is unavailable" width="75%" align="center" height=""/>
-						<!-- Stop edit here -->
+                <br /><br /><br />
 
-					</div>
-							
-						<H5>Speaker 1 clustered audio using K-means</H5><br/>
-						
-						<audio controls>
-                                               <source src="Pictures/kmean1.wav" width="50%" alt="speaker 1 clustered audio using Kmeans" type="audio/wav">
-                                               </audio><br/>
-					       
-						<H5>Speaker 2 clustered audio using K-means</H5><br/>	
+                Silences found in the first step are employed here, The 12 dimensional MFCCs found between two adjacent
+                silences are taken average and stored in an other matrix
+                corresponding to the speech signal.<br /><br />
+                <b> 4) Speech segmentation and Clustering using k-means clustering and spherical k-means clustering
+                    (UNSUPERVISED)</b><br />
+                Here, we assume that there is at least 5ms scilence between each speaker,
+                <br />
+                since the number of speakers is not known before hand,we have implemented a program(kmean_un.m in /code/
+                github code link) that starts with a large number of clusters n .
+                let their centroids be A1,A2,A3......, if the distance between any three adjacent clusters centroid does
+                not follow the relation ,</br>0.4 < (Distance (An ,An-1)/ (Distance (An ,An-1) + Distance (An-1
+                    ,An-2)))<0.6 </br>
+                    decrement n and follow same proceduce and the above relation is followed,this results in almost
+                    eqvidistant clusters(shown better results and converging to actual number of speakers) <br />
+                    The mean values of the MFCCs between the adjacent silences are calculated clustered using K-means
+                    clustering and spherical K-means Clustering with numbers of clusters from above (Kmean_un). The
+                    audio date corresponding to the
+                    mean values of the MFCCs are joined together and hence the speech audio of different speakers are
+                    obtained seperately.<br /><br />
 
-					       <audio controls>
-                                               <source src="Pictures/kmean2.wav" width="50%" alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
-                                               </audio><br/>
-							
-							
-							
-							
-						<H3><b>Clustered audio according to speaker using Spherical-Kmeans</b></H3>
-				         <div class="image">
+                    <b> 5) Modified K-Means Clustering for more than 3 speakers</b></br>
+                    <p>since K means is a classifier based on distance metric,it does not work expected as number of
+                        speakers increases. To address this proplem we have modified the traditional uses of kmeans .
+                        we have found k-means is more accurate while clustering 2 speakers.
+                        first we find number of number of speakers using the program we mentioned above(kmean_un) , if n
+                        is > 2 , we cluster it into 2 parts , and repeat same procedure with child clusters until there
+                        is no more child with more than 2 speakers</p>
+                    <p><b>Pseudo Code</b><br />
+                        step 1: sample to kmean_un % to find number of speakers</br>
+                        step 2: if n>=2; sample into 2 clusters.</br>
+                        step 3: each clustered sample to Kmean_un</br>
+                        step 4: repeat step 2 for each child clusters.
+                        output will be be when no child cluster cannot be divided further
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/Spkmeans (1).png" alt="This text displays when the image is unavailable"width="75%" align="center" height=""/>
-						<!-- Stop edit here -->
+                    </p>
 
-					</div>
-						<H5>Speaker 1 clustered audio using spherical - Kmeans</H5><br/>	
 
-						<audio controls>
-                                               <source src="Pictures/spk1.wav" width="50%" alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
-                                               </audio><br/>
-						<H5>Speaker 2 clustered audio using Spherical- Kmeans</H5><br/>
 
-					        <audio controls>
-                                               <source src="Pictures/spk2.wav" width="50%" alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
-                                               </audio>	<br/>
-						
-<!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->	
 
-						<H3><b>Data Set 2 Male-Male(2 speakers) </b><H3> 
-					<div class="image">
+                    <div class="image">
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/datavt.jpg" alt="This text displays when the image is unavailable" width="75%" height=""/>
-						<!-- Stop edit here -->
+                        <!-- Start edit here  -->
+                        <img src="Pictures/optkmea2.png" alt="This text displays when the image is unavailable"
+                            width="75%" align="center" height="" />
+                        <!-- Stop edit here -->
 
-					</div>
-						<audio controls>
-                                               <source src="Pictures/tvsam.wav" type="audio/wav">
-                                               </audio>
+                    </div>
 
-						
-						
-						<H3><b>Clustered audio according to speaker using K-means</b></H3>	
-				         <div class="image">
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/kmvt.jpg" alt="This text displays when the image is unavailable" width="75%" height=""/>
-						<!-- Stop edit here -->
 
-					</div>
-							
-						<H5>speaker 1 clustered audio using Kmeans</H5><br/>
-						
-						<audio controls>
-                                               <source src="Pictures/tark.wav" alt="speaker 1 clustered audio using K-means" type="audio/wav">
-                                               </audio><br/>
-					       
-						<H5>speaker 2 clustered audio using Kmeans</H5><br/>	
+                    <!-- Stop edit here -->
 
-					       <audio controls>
-                                               <source src="Pictures/venk.wav" alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
-                                               </audio><br/>
-							
-							
-							
-							
-						<H3><b>Clustered audio according to speaker using Spherical-Kmeans</b></H3>
-				         <div class="image">
+            </div>
+        </div>
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/spkmvt.jpg" alt="This text displays when the image is unavailable" width="75%" height=""/>
-						<!-- Stop edit here -->
+        <div class="section">
+            <div class="heading">3. Experiments &amp; Results</div>
 
-					</div>
-						<H5>speaker 1 clustered audio using spherical- Kmeans</H5><br/>	
 
-						<audio controls>
-                                               <source src="Pictures/tars.wav" alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
-                                               </audio><br/>
-						<H5>speaker 2 clustered audio using spherical- Kmeans</H5><br/>
 
-					        <audio controls>
-                                               <source src="Pictures/vens.wav"alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
-                                               </audio>	<br/>
-<!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->	
+            <div class="subsection">
+                <div class="heading">3.1 Analysis</div>
+                <div class="text">
 
-						<H3><b>Data Set 3 Merge of Dataset1 and Dataset2(4 speakers) </b><H3> 
-					<div class="image">
+                    <!-- Start edit here  -->
+                    <p>The audio signal can be analysed in two ways, analysing in the time domain and analysing in the
+                        frequency domain.Frequency domain analysis becomes very handy when it comes to differentiating
+                        the speakers in an audio signal.
+                        for our project, We started with Fourier transform of the speech signal to check if we can find
+                        any similarities in the spectrum of the audio clips of same speaker and differences in the
+                        spectrum of the different speakers.Unfortunately we are unable to see any similarities in the
+                        spectrum of the same speaker,
+                        moreover, the spectrum of the different speakers appear to be the same sometimes.
+                        We found out that there are high-frequency components in the spectrum of the speech signal. This
+                        shows that there is a noise in the speech signal. To measure the noise in the speech signal at a
+                        particular instant, we made use of ZCR(Zero Crossing Rate).from that,
+                        we found that the most of the noise is present in the silent part of the audio signal
+                        i.e. the part of the audio signal where no one is speaking.To remove the noise in the silent
+                        part, we employed amplitude thresholding to remove the parts of the signal whose amplitude is
+                        less than 5% of maximum amplitude and replaced it zeros.
+                        This ensures that there is no noise in the signal and also lets us know about the position of
+                        the silences in the signal.The features we need to extract should approximate the human auditory
+                        system's response. By going through some research papers and some literary reviews,
+                        we found that MFCCs approximate the human auditory system's response. We extracted the MFC
+                        coefficients from the audio signal as shown in the "proposed approach" above.
+                        The final part is to cluster the feature vectors obtained. we used K-means as well as Spherical
+                        K-means clustering algorithms. It works well for two clusters, but when there are more than two
+                        clusters, K-means doesn't show results as expected.
+                        It is because of K-means and spherical K-means clusters based on the distance metric. The
+                        margins of the cluster are exactly at the halfway between the two centroids. But that should not
+                        happen in this case because the clusters formed by the feature vectors are similar to Gaussian
+                        distributed.
+                        To find the number of speakers in the audio signal and cluster the data accordingly, we did the
+                        following process.
+                        First of all, we cluster the data into two clusters (which may contain more clusters in it).
+                        Next, we send each cluster to an algorithm which decides the number of clusters present with
+                        that parent cluster. Then we cluster accordingly.
+                    </p>
+                    <!-- Stop edit here -->
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/alldata.jpg" alt="This text displays when the image is unavailable" width="75%" height=""/>
-						<!-- Stop edit here -->
+                </div>
+            </div>
+        </div>
 
-					</div>
-						<audio controls>
-                                               <source src="Pictures/merge.wav" type="audio/wav">
-                                               </audio>
 
-						
-						
-						<H3><b>Clustered audio according to speaker using K-means</b></H3>	
-				         <div class="image">
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/allkms.png" alt="This text displays when the image is unavailable" width="75%" height=""/>
-						<!-- Stop edit here -->
+        <div class="subsection">
+            <div class="heading">3.2 Dataset Description and Observations</div>
+            <div class="text">
 
-					</div>
-							
-						<H5>speaker 1 clustered audio using Kmeans</H5><br/>
-						
-						<audio controls>
-                                               <source src="Pictures/kcluster1.wav" alt="speaker 1 clustered audio using K-means" type="audio/wav">
-                                               </audio><br/>
-					       
-						<H5>speaker 2 clustered audio using Kmeans</H5><br/>	
+                <!-- Start edit here  -->
+                <!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->
+                <H3><b>Data Set 1 :Male-Female(2 speakers) </b>
+                    <H3>
+                        <div class="image">
 
-					       <audio controls>
-                                               <source src="Pictures/kcluster2.wav" alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
-                                               </audio><br/>
-							
-						<H5>speaker 3 clustered audio using Kmeans</H5><br/>
-						
-						<audio controls>
-                                               <source src="Pictures/kcluster3.wav" alt="speaker 3 clustered audio using K-means" type="audio/wav">
-                                               </audio><br/>
-					       
-						<H5>speaker 4 clustered audio using Kmeans</H5><br/>	
+                            <!-- Start edit here  -->
+                            <img src="Pictures/Inputdata(1).png" alt="This text displays when the image is unavailable"
+                                width="75%" align="center" height="" />
+                            <!-- Stop edit here -->
 
-					       <audio controls>
-                                               <source src="Pictures/kcluster4.wav" alt="speaker 4 clustered audio using Kmeans" type="audio/wav">
-                                               </audio><br/>
-							
-							</br>
-							
-							
-						<H3><b>Clustered audio according to speaker using Spherical-Kmeans</b></H3>
-				         <div class="image">
+                        </div>
+                        <audio controls>
+                            <source src="Pictures/123.wav" width="50%" type="audio/wav">
+                        </audio>
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/allspkms.png" alt="This text displays when the image is unavailable" width="75%" height=""/>
-						<!-- Stop edit here -->
 
-					</div>
-						<H5>speaker 1 clustered audio using spherical- Kmeans</H5><br/>	
 
-						<audio controls>
-                                               <source src="Pictures/spkcluster1.wav" alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
-                                               </audio><br/>
-						<H5>speaker 2 clustered audio using spherical- Kmeans</H><br/>
+                        <H3><b>Clustered audio according to speaker using Kmeans</b></H3>
+                        <div class="image">
 
-					        <audio controls>
-                                               <source src="Pictures/spkcluster2.wav"alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
-                                               </audio>	<br/>
-							
-						<H5>speaker 3 clustered audio using spherical- Kmeans</H5><br/>	
+                            <!-- Start edit here  -->
+                            <img src="Pictures/K-Means (1).png" alt="This text displays when the image is unavailable"
+                                width="75%" align="center" height="" />
+                            <!-- Stop edit here -->
 
-						<audio controls>
-                                               <source src="Pictures/spkcluster3.wav" alt="speaker 3 clustered audio using spherical- Kmeans" type="audio/wav">
-                                               </audio><br/>
-						<H5>speaker 4 clustered audio using spherical- Kmeans</H><br/>
+                        </div>
 
-					        <audio controls>
-                                               <source src="Pictures/spkcluster4.wav"alt="speaker 4 clustered audio using spherical-Kmeans" type="audio/wav">
-                                               </audio>	<br/>
-							
-							<br/><br/><br/>
-<!--         /////// modified k-means\\\\\\\\\\\\\\\
+                        <H5>Speaker 1 clustered audio using K-means</H5><br />
+
+                        <audio controls>
+                            <source src="Pictures/kmean1.wav" width="50%" alt="speaker 1 clustered audio using Kmeans"
+                                type="audio/wav">
+                        </audio><br />
+
+                        <H5>Speaker 2 clustered audio using K-means</H5><br />
+
+                        <audio controls>
+                            <source src="Pictures/kmean2.wav" width="50%" alt="speaker 2 clustered audio using Kmeans"
+                                type="audio/wav">
+                        </audio><br />
+
+
+
+
+                        <H3><b>Clustered audio according to speaker using Spherical-Kmeans</b></H3>
+                        <div class="image">
+
+                            <!-- Start edit here  -->
+                            <img src="Pictures/Spkmeans (1).png" alt="This text displays when the image is unavailable"
+                                width="75%" align="center" height="" />
+                            <!-- Stop edit here -->
+
+                        </div>
+                        <H5>Speaker 1 clustered audio using spherical - Kmeans</H5><br />
+
+                        <audio controls>
+                            <source src="Pictures/spk1.wav" width="50%"
+                                alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
+                        </audio><br />
+                        <H5>Speaker 2 clustered audio using Spherical- Kmeans</H5><br />
+
+                        <audio controls>
+                            <source src="Pictures/spk2.wav" width="50%"
+                                alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
+                        </audio> <br />
+
+                        <!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->
+
+                        <H3><b>Data Set 2 Male-Male(2 speakers) </b>
+                            <H3>
+                                <div class="image">
+
+                                    <!-- Start edit here  -->
+                                    <img src="Pictures/datavt.jpg"
+                                        alt="This text displays when the image is unavailable" width="75%" height="" />
+                                    <!-- Stop edit here -->
+
+                                </div>
+                                <audio controls>
+                                    <source src="Pictures/tvsam.wav" type="audio/wav">
+                                </audio>
+
+
+
+                                <H3><b>Clustered audio according to speaker using K-means</b></H3>
+                                <div class="image">
+
+                                    <!-- Start edit here  -->
+                                    <img src="Pictures/kmvt.jpg" alt="This text displays when the image is unavailable"
+                                        width="75%" height="" />
+                                    <!-- Stop edit here -->
+
+                                </div>
+
+                                <H5>speaker 1 clustered audio using Kmeans</H5><br />
+
+                                <audio controls>
+                                    <source src="Pictures/tark.wav" alt="speaker 1 clustered audio using K-means"
+                                        type="audio/wav">
+                                </audio><br />
+
+                                <H5>speaker 2 clustered audio using Kmeans</H5><br />
+
+                                <audio controls>
+                                    <source src="Pictures/venk.wav" alt="speaker 2 clustered audio using Kmeans"
+                                        type="audio/wav">
+                                </audio><br />
+
+
+
+
+                                <H3><b>Clustered audio according to speaker using Spherical-Kmeans</b></H3>
+                                <div class="image">
+
+                                    <!-- Start edit here  -->
+                                    <img src="Pictures/spkmvt.jpg"
+                                        alt="This text displays when the image is unavailable" width="75%" height="" />
+                                    <!-- Stop edit here -->
+
+                                </div>
+                                <H5>speaker 1 clustered audio using spherical- Kmeans</H5><br />
+
+                                <audio controls>
+                                    <source src="Pictures/tars.wav"
+                                        alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
+                                </audio><br />
+                                <H5>speaker 2 clustered audio using spherical- Kmeans</H5><br />
+
+                                <audio controls>
+                                    <source src="Pictures/vens.wav"
+                                        alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
+                                </audio> <br />
+                                <!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->
+
+                                <H3><b>Data Set 3 Merge of Dataset1 and Dataset2(4 speakers) </b>
+                                    <H3>
+                                        <div class="image">
+
+                                            <!-- Start edit here  -->
+                                            <img src="Pictures/alldata.jpg"
+                                                alt="This text displays when the image is unavailable" width="75%"
+                                                height="" />
+                                            <!-- Stop edit here -->
+
+                                        </div>
+                                        <audio controls>
+                                            <source src="Pictures/merge.wav" type="audio/wav">
+                                        </audio>
+
+
+
+                                        <H3><b>Clustered audio according to speaker using K-means</b></H3>
+                                        <div class="image">
+
+                                            <!-- Start edit here  -->
+                                            <img src="Pictures/allkms.png"
+                                                alt="This text displays when the image is unavailable" width="75%"
+                                                height="" />
+                                            <!-- Stop edit here -->
+
+                                        </div>
+
+                                        <H5>speaker 1 clustered audio using Kmeans</H5><br />
+
+                                        <audio controls>
+                                            <source src="Pictures/kcluster1.wav"
+                                                alt="speaker 1 clustered audio using K-means" type="audio/wav">
+                                        </audio><br />
+
+                                        <H5>speaker 2 clustered audio using Kmeans</H5><br />
+
+                                        <audio controls>
+                                            <source src="Pictures/kcluster2.wav"
+                                                alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
+                                        </audio><br />
+
+                                        <H5>speaker 3 clustered audio using Kmeans</H5><br />
+
+                                        <audio controls>
+                                            <source src="Pictures/kcluster3.wav"
+                                                alt="speaker 3 clustered audio using K-means" type="audio/wav">
+                                        </audio><br />
+
+                                        <H5>speaker 4 clustered audio using Kmeans</H5><br />
+
+                                        <audio controls>
+                                            <source src="Pictures/kcluster4.wav"
+                                                alt="speaker 4 clustered audio using Kmeans" type="audio/wav">
+                                        </audio><br />
+
+                                        </br>
+
+
+                                        <H3><b>Clustered audio according to speaker using Spherical-Kmeans</b></H3>
+                                        <div class="image">
+
+                                            <!-- Start edit here  -->
+                                            <img src="Pictures/allspkms.png"
+                                                alt="This text displays when the image is unavailable" width="75%"
+                                                height="" />
+                                            <!-- Stop edit here -->
+
+                                        </div>
+                                        <H5>speaker 1 clustered audio using spherical- Kmeans</H5><br />
+
+                                        <audio controls>
+                                            <source src="Pictures/spkcluster1.wav"
+                                                alt="speaker 1 clustered audio using spherical- Kmeans"
+                                                type="audio/wav">
+                                        </audio><br />
+                                        <H5>speaker 2 clustered audio using spherical- Kmeans</H><br />
+
+                                            <audio controls>
+                                                <source src="Pictures/spkcluster2.wav"
+                                                    alt="speaker 2 clustered audio using spherical-Kmeans"
+                                                    type="audio/wav">
+                                            </audio> <br />
+
+                                            <H5>speaker 3 clustered audio using spherical- Kmeans</H5><br />
+
+                                            <audio controls>
+                                                <source src="Pictures/spkcluster3.wav"
+                                                    alt="speaker 3 clustered audio using spherical- Kmeans"
+                                                    type="audio/wav">
+                                            </audio><br />
+                                            <H5>speaker 4 clustered audio using spherical- Kmeans</H><br />
+
+                                                <audio controls>
+                                                    <source src="Pictures/spkcluster4.wav"
+                                                        alt="speaker 4 clustered audio using spherical-Kmeans"
+                                                        type="audio/wav">
+                                                </audio> <br />
+
+                                                <br /><br /><br />
+                                                <!--         /////// modified k-means\\\\\\\\\\\\\\\
 						<H3><b>Data Set 3 Merge of Dataset1 and Dataset2(4 speakers) with Modified K-means (Divide and conquer)</b><H3> 
 					<div class="image">
 
 						<!-- Start edit here  -->
-                                                <img src="Pictures/alldata.jpg" alt="This text displays when the image is unavailable" width="75%" height=""/>
-						<!-- Stop edit here -->
+                                                <img src="Pictures/alldata.jpg"
+                                                    alt="This text displays when the image is unavailable" width="75%"
+                                                    height="" />
+                                                <!-- Stop edit here -->
 
-					</div>
-						<audio controls>
-                                               <source src="Pictures/merge.wav" type="audio/wav">
-                                               </audio>
+            </div>
+            <audio controls>
+                <source src="Pictures/merge.wav" type="audio/wav">
+            </audio>
 
-						
-						
-						<H3><b>Clustered audio according to speaker using K-means (modified)</b></H3>	
-				         <div class="image">
 
-						<!-- Start edit here  -->
-                                                <img src="Pictures/optkmea.png" alt="This text displays when the image is unavailable" width="75%" height=""/>
-						<!-- Stop edit here -->
 
-					</div>
-							
-						<H5>speaker 1 clustered audio using Kmeans (modified)</H5><br/>
-						
-						<audio controls>
-                                               <source src="Pictures/onlyspk1.wav" alt="speaker 1 clustered audio using K-means" type="audio/wav">
-                                               </audio><br/>
-					       
-						<H5>speaker 2 clustered audio using Kmeans (modified)</H5><br/>	
+            <H3><b>Clustered audio according to speaker using K-means (modified)</b></H3>
+            <div class="image">
 
-					       <audio controls>
-                                               <source src="Pictures/onlyspk2.wav" alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
-                                               </audio><br/>
-							
-							
-						<H5>speaker 3 clustered audio using  K-means (modified)</H5><br/>	
+                <!-- Start edit here  -->
+                <img src="Pictures/optkmea.png" alt="This text displays when the image is unavailable" width="75%"
+                    height="" />
+                <!-- Stop edit here -->
 
-						<audio controls>
-                                               <source src="Pictures/onlyspk3.wav" alt="speaker 1 clustered audio using spherical- Kmeans" type="audio/wav">
-                                               </audio><br/>
-						<H5>speaker 4 clustered audio using Kmeans (modified)</H><br/>
+            </div>
 
-					        <audio controls>
-                                               <source src="Pictures/onlyspk4.wav"alt="speaker 2 clustered audio using spherical-Kmeans" type="audio/wav">
-                                               </audio>	<br/>
-							
-							<br/><br/><br/>
-<!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->	
-							<!-- Stop edit here -->							
-							
-							<!-- Stop edit here -->
+            <H5>speaker 1 clustered audio using Kmeans (modified)</H5><br />
 
-					</div>
-				</div>
-				
+            <audio controls>
+                <source src="Pictures/onlyspk1.wav" alt="speaker 1 clustered audio using K-means" type="audio/wav">
+            </audio><br />
 
-			<div class="section">
-				<div class="heading">4. Conclusions</div>
-				<div class="subsection">
-					<div class="heading">4.1 Summary</div>
-					<div class="text">
+            <H5>speaker 2 clustered audio using Kmeans (modified)</H5><br />
 
-						<!-- Start edit here  -->
-						
-						
-						
-						
-						
-						<h5 >Results</h5>
-						<p>The results obtained for the data sets are as follows:
-For the dataset 1, the algorithm clusters perfectly and two different audio clips are obtained corresponding to each speaker(male and female)
-For the dataset 2, the algorithm clusters perfectly and two different audio clips are obtained corresponding to each speaker(male and male)
-When the dataset 1 and data set 2 are merged and sent as input to the algorithm, the results are not up to the mark, by just using K-means algorithm.
-When the merged dataset is sent as input to the Divide and conquer algorithm for Kmeans, with this modified kmeans algorithm, 
-the clustering is better than the one which uses only K-means or spherical kmeans.</p>
-						<h5>Conclusions</h5><p>
-						The results obtained are satisfactory. When there are two speakers, the algorithm clusters perfectly but When there are more than two speakers, the algorithm is a bit less efficient in clustering. K-means is the best fit when there are two speakers.
-The results can be better obtained when we use clustering algorithms that cluster the Gaussian distributed data. GMM or HMM can be employed for that purpose.
-						</p>
-						<!-- Stop edit here -->
+            <audio controls>
+                <source src="Pictures/onlyspk2.wav" alt="speaker 2 clustered audio using Kmeans" type="audio/wav">
+            </audio><br />
 
-					</div>
-				</div>
-				<div class="subsection">
-					<div class="heading">4.2 Future Extensions</div>
-					<div class="text">
 
-						<!-- Start edit here  -->
-						<p>Clustering using GMM and HMM can be employed for the better performance </br>
-The algorithm can be made supervised by training it with the audio samples of the known speakers. And identifying the speaker from the new audio data.
-						</p><!-- Stop edit here -->
+            <H5>speaker 3 clustered audio using K-means (modified)</H5><br />
 
-					</div>
-				</div>
-			</div>
+            <audio controls>
+                <source src="Pictures/onlyspk3.wav" alt="speaker 1 clustered audio using spherical- Kmeans"
+                    type="audio/wav">
+            </audio><br />
+            <H5>speaker 4 clustered audio using Kmeans (modified)</H><br />
 
-		</div>
-	</body>
+                <audio controls>
+                    <source src="Pictures/onlyspk4.wav" alt="speaker 2 clustered audio using spherical-Kmeans"
+                        type="audio/wav">
+                </audio> <br />
+
+                <br /><br /><br />
+                <!--  ???????????????????????????????????????????????????????Stop edit here ?????????????????????????????????????????????-->
+                <!-- Stop edit here -->
+
+                <!-- Stop edit here -->
+
+        </div>
+    </div>
+
+
+    <div class="section">
+        <div class="heading">4. Conclusions</div>
+        <div class="subsection">
+            <div class="heading">4.1 Summary</div>
+            <div class="text">
+
+                <!-- Start edit here  -->
+
+
+
+
+
+                <h5>Results</h5>
+                <p>The results obtained for the data sets are as follows:
+                    For the dataset 1, the algorithm clusters perfectly and two different audio clips are obtained
+                    corresponding to each speaker(male and female)
+                    For the dataset 2, the algorithm clusters perfectly and two different audio clips are obtained
+                    corresponding to each speaker(male and male)
+                    When the dataset 1 and data set 2 are merged and sent as input to the algorithm, the results are not
+                    up to the mark, by just using K-means algorithm.
+                    When the merged dataset is sent as input to the Divide and conquer algorithm for Kmeans, with this
+                    modified kmeans algorithm,
+                    the clustering is better than the one which uses only K-means or spherical kmeans.</p>
+                <h5>Conclusions</h5>
+                <p>
+                    The results obtained are satisfactory. When there are two speakers, the algorithm clusters perfectly
+                    but When there are more than two speakers, the algorithm is a bit less efficient in clustering.
+                    K-means is the best fit when there are two speakers.
+                    The results can be better obtained when we use clustering algorithms that cluster the Gaussian
+                    distributed data. GMM or HMM can be employed for that purpose.
+                </p>
+                <!-- Stop edit here -->
+
+            </div>
+        </div>
+        <div class="subsection">
+            <div class="heading">4.2 Future Extensions</div>
+            <div class="text">
+
+                <!-- Start edit here  -->
+                <p>Clustering using GMM and HMM can be employed for the better performance </br>
+                    The algorithm can be made supervised by training it with the audio samples of the known speakers.
+                    And identifying the speaker from the new audio data.
+                </p><!-- Stop edit here -->
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+</body>
+
 </html>
